@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: books
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+
+  catalog:
+    build: ./catalog-service
+    container_name: catalog_service
+    volumes:
+      - ./catalog-service/files:/app/files
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8081:8081"

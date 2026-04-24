@@ -1,0 +1,16 @@
+go 1.26
+
+use (
+	./pkg/config
+	./pkg/logger
+	./pkg/middlewares
+	./pkg/serde
+	./pkg/jwt
+
+	./services/gateway
+	./services/auth
+	./services/account
+	./services/catalog
+	./services/notifier
+	./services/order
+)

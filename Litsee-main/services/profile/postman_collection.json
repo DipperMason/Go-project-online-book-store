@@ -1,0 +1,207 @@
+{
+  "info": {
+    "name": "Profile Service API",
+    "description": "Collection of APIs for Personal Profile Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"avatar\": \"https://example.com/avatar.jpg\",\n  \"bio\": \"Hello, I'm John!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Password",
+      "item": [
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_password\": \"currentPassword123\",\n  \"new_password\": \"newPassword456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile/password",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile", "password"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sessions",
+      "item": [
+        {
+          "name": "Get Active Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile/sessions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile", "sessions"]
+            }
+          }
+        },
+        {
+          "name": "Terminate Session",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile/sessions/{{session_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile", "sessions", "{{session_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Terminate All Sessions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile/sessions/terminate-all",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile", "sessions", "terminate-all"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Activity",
+      "item": [
+        {
+          "name": "Get Activity History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8003/api/v1/profile/activity?limit=50&offset=0",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8003",
+              "path": ["api", "v1", "profile", "activity"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "your_jwt_token_here"
+    },
+    {
+      "key": "session_id",
+      "value": "session-uuid-here"
+    }
+  ]
+}

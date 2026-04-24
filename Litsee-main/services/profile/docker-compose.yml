@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  profile:
+    build:
+      context: ../../
+      dockerfile: services/profile/Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - PORT=8003
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    networks:
+      - litsee
+
+networks:
+  litsee:
+    driver: bridge

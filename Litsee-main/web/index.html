@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Litsee Web Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <div id="notifications" class="notifications" aria-live="polite" aria-atomic="false"></div>
+  <main class="container">
+    <header class="hero">
+      <h1>Litsee Platform Demo</h1>
+      <p>Рабочая web-часть для демонстрации платформы: auth + profile + библиотека купленных книг.</p>
+      <div class="status-row">
+        <button id="check-health" class="btn btn-secondary">Проверить сервисы</button>
+        <span id="health-status" class="status-chip">ожидание проверки</span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h2>1. Регистрация</h2>
+        <form id="register-form" class="form">
+          <label>Email<input name="email" type="email" required placeholder="user@example.com" /></label>
+          <label>Пароль<input name="password" type="password" minlength="6" required placeholder="******" /></label>
+          <button class="btn" type="submit">Зарегистрироваться</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>2. Вход</h2>
+        <form id="login-form" class="form">
+          <label>Email<input name="email" type="email" required /></label>
+          <label>Пароль<input name="password" type="password" required /></label>
+          <button class="btn" type="submit">Войти</button>
+        </form>
+        <div class="token-block">
+          <strong>JWT:</strong>
+          <code id="token-preview">не авторизован</code>
+          <button id="logout" class="btn btn-secondary" type="button">Выйти</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>3. Профиль</h2>
+        <div class="row-actions">
+          <button id="load-profile" class="btn btn-secondary" type="button">Загрузить</button>
+          <button id="save-profile" class="btn" type="button">Сохранить</button>
+        </div>
+      </div>
+      <form id="profile-form" class="form profile-grid">
+        <label>First name<input name="first_name" type="text" /></label>
+        <label>Last name<input name="last_name" type="text" /></label>
+        <label>Avatar URL<input name="avatar" type="url" placeholder="https://..." /></label>
+        <label>Bio<textarea name="bio" rows="3" placeholder="О себе..."></textarea></label>
+      </form>
+      <pre id="profile-json" class="output"></pre>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-head">
+          <h2>4. Купленные книги</h2>
+          <button id="load-books" class="btn btn-secondary" type="button">Обновить</button>
+        </div>
+        <div class="paging">
+          <label>limit<input id="books-limit" type="number" value="50" min="1" max="100" /></label>
+          <label>offset<input id="books-offset" type="number" value="0" min="0" /></label>
+        </div>
+        <div id="books-list" class="list"></div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>5. Активность</h2>
+          <button id="load-activity" class="btn btn-secondary" type="button">Обновить</button>
+        </div>
+        <div class="paging">
+          <label>limit<input id="activity-limit" type="number" value="20" min="1" max="100" /></label>
+          <label>offset<input id="activity-offset" type="number" value="0" min="0" /></label>
+        </div>
+        <div id="activity-list" class="list"></div>
+      </article>
+    </section>
+
+    <section class="card log-card">
+      <h2>Лог демо</h2>
+      <div id="log" class="log"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
